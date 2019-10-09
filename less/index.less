@@ -1,5 +1,5 @@
 //----------------------------------------------------------
-//	mixins
+//	my mixins
 //----------------------------------------------------------
 //	sizing
 //--------------------------------------
@@ -25,6 +25,28 @@
 .w-100r() { width: 100%; }
 
 //--------------------------------------
+//	spacing
+//--------------------------------------
+
+.stop-vert-end-margins() {
+	&:first-child {
+		margin-top: 0;
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.stop-horz-end-margins() {
+	&:first-child {
+		margin-left: 0;
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+//--------------------------------------
 //	flexbox
 //--------------------------------------
 
@@ -42,6 +64,17 @@
 	align-content: @align-flows-across-flex;
 	align-items: @align-items-across-flow;
 }
+
+//----------------------------------------------------------
+//	typefaces
+//----------------------------------------------------------
+
+@import url('https://fonts.googleapis.com/css?family=Mansalva|Roboto|Roboto+Mono|Roboto+Slab&display=swap');
+
+@body-font     : 'Roboto', sans-serif ;
+@heading-font  : 'Roboto Slab', serif ;
+@code-font     : 'Roboto Mono', monospace ;
+@creative-font : 'Mansalva', cursive ;
 
 //----------------------------------------------------------
 //	basics
@@ -62,4 +95,36 @@ html {
 
 body {
 	.size( 100% , 100% );
+	font-family: @body-font;
+	font-size: 1.6rem;
 }
+
+h1 , h2 , h3 , h4 , h5 , h6 {
+	margin: 1.0rem 0;
+	.stop-vert-end-margins();
+
+	font-family: @heading-font;
+}
+h1 { font-size: 4.0rem; }
+h2 { font-size: 3.0rem; }
+h3 { font-size: 2.0rem; }
+h4 { font-size: 1.8rem; }
+h5 { font-size: 1.7rem; }
+h6 { font-size: 1.6rem; }
+
+p {
+	margin: 1.0rem 0;
+	.stop-vert-end-margins();
+}
+
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+//----------------------------------------------------------
+//	header
+//----------------------------------------------------------
