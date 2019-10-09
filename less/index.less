@@ -1,14 +1,55 @@
 //----------------------------------------------------------
+//	mixins
+//----------------------------------------------------------
+//	sizing
+//--------------------------------------
+.size( @h ; @w )
+{
+	height: @h;
+	width: @w;
+}
+
+.min-size( @h ; @w )
+{
+	min-height: @h;
+	min-width: @w;
+}
+
+.max-size( @h ; @w )
+{
+	max-height: @h;
+	max-width: @w;
+}
+
+.h-100r() { height: 100%; }
+.w-100r() { width: 100%; }
+
+//--------------------------------------
+//	flexbox
+//--------------------------------------
+
+.flex(
+	@flex-direction          : row ;
+	@flex-wrapping           : nowrap ;
+	@align-flows-along-flex  : space-around ;
+	@align-flows-across-flex : space-around ;
+	@align-items-across-flow : stretch )
+{
+	display: flex;
+	flex-direction: @flex-direction;
+	flex-wrap: @flex-wrapping;
+	justify-content: @align-flows-along-flex;
+	align-content: @align-flows-across-flex;
+	align-items: @align-items-across-flow;
+}
+
+//----------------------------------------------------------
 //	basics
 //----------------------------------------------------------
 
-.h-100() { height: 100%; }
-.w-100() { width: 100%; }
-
 html {
 	box-sizing: border-box;
-	.h-100();
-	.w-100();
+	.size( 100% , 100% );
 
 	font-size: 62.5%;
 }
@@ -20,6 +61,5 @@ html {
 }
 
 body {
-	.h-100();
-	.w-100();
+	.size( 100% , 100% );
 }
