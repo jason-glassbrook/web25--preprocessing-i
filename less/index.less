@@ -28,6 +28,42 @@
 //	spacing
 //------------------
 
+.margin-vert( @top ; @bottom: @top )
+{
+	margin-top: @top;
+	margin-bottom: @bottom;
+}
+
+.margin-horz( @left ; @right: @left )
+{
+	margin-left: @left;
+	margin-right: @right;
+}
+
+.margin-vert-auto-horz( @top: 0 ; @bottom: @top )
+{
+	.margin-vert( @top ; @bottom );
+	.margin-horz( auto );
+}
+
+.margin-vert-no-horz( @top ; @bottom: @top )
+{
+	.margin-vert( @top ; @bottom );
+	.margin-horz( 0 );
+}
+
+.margin-horz-auto-vert( @left ; @right: @left )
+{
+	.margin-vert( auto );
+	.margin-horz( @left ; @right );
+}
+
+.margin-horz-no-vert( @left ; @right: @left )
+{
+	.margin-vert( 0 );
+	.margin-horz( @left ; @right );
+}
+
 .stop-vert-end-margins() {
 	&:first-child {
 		margin-top: 0;
@@ -139,9 +175,18 @@ a {
 //	site nav
 //--------------------------------------
 
+nav {
+	position: sticky;
+	.size( 80px , 100% );
+}
+
 //--------------------------------------
 //	header
 //--------------------------------------
+
+header {
+	margin: 0 auto ;
+}
 
 //--------------------------------------
 //	page

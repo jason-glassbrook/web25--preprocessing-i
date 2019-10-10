@@ -101,3 +101,11 @@ a {
 a:hover {
   text-decoration: underline;
 }
+nav {
+  position: sticky;
+  height: 80px;
+  width: 100%;
+}
+header {
+  margin: 0 auto ;
+}
