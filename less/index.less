@@ -1,59 +1,197 @@
-// Is this working?
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+//--------------------------------------
+//	my mixins
+//--------------------------------------
+//	sizing
+//------------------
+.size( @h ; @w )
+{
+	height: @h;
+	width: @w;
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+.min-size( @h ; @w )
+{
+	min-height: @h;
+	min-width: @w;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+
+.max-size( @h ; @w )
+{
+	max-height: @h;
+	max-width: @w;
 }
+
+.h-100r() { height: 100%; }
+.w-100r() { width: 100%; }
+
+//------------------
+//	spacing
+//------------------
+
+.margin-vert( @top ; @bottom: @top )
+{
+	margin-top: @top;
+	margin-bottom: @bottom;
+}
+
+.margin-horz( @left ; @right: @left )
+{
+	margin-left: @left;
+	margin-right: @right;
+}
+
+.margin-vert-auto-horz( @top: 0 ; @bottom: @top )
+{
+	.margin-vert( @top ; @bottom );
+	.margin-horz( auto );
+}
+
+.margin-vert-no-horz( @top ; @bottom: @top )
+{
+	.margin-vert( @top ; @bottom );
+	.margin-horz( 0 );
+}
+
+.margin-horz-auto-vert( @left ; @right: @left )
+{
+	.margin-vert( auto );
+	.margin-horz( @left ; @right );
+}
+
+.margin-horz-no-vert( @left ; @right: @left )
+{
+	.margin-vert( 0 );
+	.margin-horz( @left ; @right );
+}
+
+.stop-vert-end-margins() {
+	&:first-child {
+		margin-top: 0;
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.stop-horz-end-margins() {
+	&:first-child {
+		margin-left: 0;
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+//------------------
+//	flexbox
+//------------------
+
+.flex(
+	@flex-direction          : row ;
+	@flex-wrapping           : nowrap ;
+	@align-flows-along-flex  : space-around ;
+	@align-flows-across-flex : space-around ;
+	@align-items-across-flow : stretch )
+{
+	display: flex;
+	flex-direction: @flex-direction;
+	flex-wrap: @flex-wrapping;
+	justify-content: @align-flows-along-flex;
+	align-content: @align-flows-across-flex;
+	align-items: @align-items-across-flow;
+}
+
+//--------------------------------------
+//	typefaces
+//--------------------------------------
+
+@import url('https://fonts.googleapis.com/css?family=Mansalva|Roboto|Roboto+Mono|Roboto+Slab&display=swap');
+
+@body-font     : 'Roboto', sans-serif ;
+@heading-font  : 'Roboto Slab', serif ;
+@code-font     : 'Roboto Mono', monospace ;
+@creative-font : 'Mansalva', cursive ;
+
+//--------------------------------------
+//	colors
+//--------------------------------------
+
+@light : #eeeeee ;
+@dark  : #111111 ;
+@accent-1 : hsl(51 , 100% , 50%) ;
+@accent-2 : hsl(213 , 100% , 50%) ;
+@accent-3 : hsl(286 , 100% , 50%) ;
+
+//--------------------------------------
+//	basics
+//--------------------------------------
+
+html {
+	box-sizing: border-box;
+	.size( 100% , 100% );
+
+	font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
 body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+	.size( 100% , 100% );
+	font-family: @body-font;
+	font-size: 1.6rem;
 }
 
-/* Set every element's box-sizing to border-box */
-* {
-    box-sizing: border-box;
+h1 , h2 , h3 , h4 , h5 , h6 {
+	margin: 1.0rem 0;
+	.stop-vert-end-margins();
+
+	font-family: @heading-font;
+}
+h1 { font-size: 4.0rem; }
+h2 { font-size: 3.0rem; }
+h3 { font-size: 2.0rem; }
+h4 { font-size: 1.8rem; }
+h5 { font-size: 1.7rem; }
+h6 { font-size: 1.6rem; }
+
+p {
+	margin: 1.0rem 0;
+	.stop-vert-end-margins();
 }
 
-html, body {
-    height: 100%;
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
+//--------------------------------------
+//	site nav
+//--------------------------------------
+
+nav {
+	position: sticky;
+	.size( 80px , 100% );
+}
+
+//--------------------------------------
+//	header
+//--------------------------------------
+
+header {
+	margin: 0 auto ;
+}
+
+//--------------------------------------
+//	page
+//--------------------------------------
+
+//--------------------------------------
+//	footer
+//--------------------------------------
